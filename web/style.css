@@ -1,0 +1,133 @@
+:root {
+  color-scheme: dark;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(7, 80px);
+  row-gap: 20px;
+  column-gap: 20px;
+  padding: 16px;
+  width: max-content;
+  justify-content: center;
+  margin: auto;
+  border-radius: 8px;
+  background-color: #1f60d6;
+  margin-top: 80px;
+  z-index: 10;
+}
+
+#game-over{
+  height: 284px;
+  width: 372px;
+  color: black;
+  background-color: rgba(240, 255, 255,0.4);
+  box-shadow: 6px 8px 10px rgba(0, 0, 0,0.44);
+  backdrop-filter: blur(12px);
+  transform: translateY(-461px);
+  border-radius: 8px;
+  margin: auto;
+  display: none;
+}
+
+#game-over div{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 60px;
+}
+
+#game-over[data-player="-1"],
+#game-over[data-player="0"],
+#game-over[data-player="1"]{
+  display: block;
+}
+
+#game-over::after
+{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  width: inherit;
+  height: 224px;
+}
+
+#game-over[data-player="-1"]::after{
+  content: "Player 1 wins!";
+  color: #cb162f;
+}
+
+#game-over[data-player="1"]::after{
+  color: #fcc900;
+  content: "Player 2 wins!";
+}
+#game-over[data-player="0"]::after{
+  content: "Draw!";
+  color: #696969;
+}
+
+#game-over button{
+  color: black;
+  font-size: 28px;
+  cursor: pointer;
+  background-color: cadetblue;
+  border: none;
+  border-radius: 6px;
+  padding:  6px 12px;
+  color:  azure;
+  cursor: pointer;
+  box-shadow: 3px 4px 5px rgba(0, 0, 0,0.14);
+  transition: transform 0.14s;
+  z-index: 100;
+}
+
+#game-over button:hover{
+  transform: scale(1.02);
+}
+
+.cell {
+  width: 80px;
+  height: 80px;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  border: solid 1px black;
+  /* box-shadow: -2px 2px 1px #111, inset -4px 4px 3px white; */
+}
+
+.piece::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: solid 2px rgba(0, 0, 0, 0.4);
+  transform: translate(8px, 8px);
+  border-radius: 50%;
+}
+
+.piece {
+  height: inherit;
+  width: inherit;
+  border-radius: 50%;
+  flex-grow: 1;
+}
+
+.piece[data-placed="false"] {
+  transform: translateY(-100px);
+}
+
+.piece[data-player="-1"] {
+  background-color: #cb162f;
+}
+
+.piece[data-player="1"] {
+  background-color: #fcc900;
+}
